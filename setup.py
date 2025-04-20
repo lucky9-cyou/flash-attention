@@ -82,7 +82,7 @@ def _is_hip() -> bool:
 class CMakeExtension(Extension):
 
     def __init__(self, name: str, cmake_lists_dir: str = '.', **kwa) -> None:
-        super().__init__(name, sources=[], py_limited_api=True, **kwa)
+        super().__init__(name, sources=[], py_limited_api=False, **kwa)
         self.cmake_lists_dir = os.path.abspath(cmake_lists_dir)
 
 
@@ -145,6 +145,7 @@ class cmake_build_ext(build_ext):
         cmake_args = [
             '-DCMAKE_BUILD_TYPE={}'.format(cfg),
             '-DVLLM_TARGET_DEVICE={}'.format(VLLM_TARGET_DEVICE),
+            '-DCMAKE_CUDA_HOST_COMPILER=/usr/bin/gcc-13'
         ]
 
         verbose = envs.VERBOSE
@@ -308,6 +309,6 @@ setup(
     ext_modules=ext_modules,
     cmdclass={"build_ext": cmake_build_ext} if len(ext_modules) > 0 else {},
     python_requires=">=3.8",
-    install_requires=[f"torch == {PYTORCH_VERSION}"],
+    install_requires=[f"torch"],
     setup_requires=["psutil"],
 )
