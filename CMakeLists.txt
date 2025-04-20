@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(FA2_ENABLED ON)
-set(FA3_ENABLED OFF)
+set(FA3_ENABLED ON)
 
 # CUDA by default, can be overridden by using -DVLLM_TARGET_DEVICE=... (used by setup.py)
 set(VLLM_TARGET_DEVICE "cuda" CACHE STRING "Target device backend for vLLM")
@@ -230,8 +230,7 @@ if (FA3_ENABLED AND ${CMAKE_CUDA_COMPILER_VERSION} GREATER_EQUAL 12.0)
             ${FA3_GEN_SRCS}
         COMPILE_FLAGS ${VLLM_FA_GPU_FLAGS}
         ARCHITECTURES ${VLLM_FA_GPU_ARCHES}
-        USE_SABI 3
-        WITH_SOABI)
+    )
 
     target_include_directories(_vllm_fa3_C PRIVATE
         hopper
