@@ -39,7 +39,7 @@ set(HIP_SUPPORTED_ARCHS "gfx906;gfx908;gfx90a;gfx940;gfx941;gfx942;gfx1030;gfx11
 # Note: these should be kept in sync with the torch version in setup.py.
 # Likely should also be in sync with the vLLM version.
 #
-set(TORCH_SUPPORTED_VERSION_CUDA "2.4.0")
+set(TORCH_SUPPORTED_VERSION_CUDA "2.4.0", "2.6.0")
 
 find_python_constrained_versions(${PYTHON_SUPPORTED_VERSIONS})
 
@@ -153,8 +153,7 @@ if (FA2_ENABLED)
             csrc/flash_attn/flash_api_torch_lib.cpp
             ${FA2_GEN_SRCS}
         COMPILE_FLAGS ${VLLM_FA_GPU_FLAGS}
-        USE_SABI 3
-        WITH_SOABI)
+    )
 
     target_include_directories(_vllm_fa2_C PRIVATE
         csrc/flash_attn
