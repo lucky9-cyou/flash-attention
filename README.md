@@ -16,6 +16,15 @@ Paper: https://tridao.me/publications/flash2/flash2.pdf
 
 ![FlashAttention-2](assets/flashattention_logo.png)
 
+## Compile for Python 3.13 free-threading build
+**To build:**
+```sh
+pip install ninja
+# MAX_JOBS for quick compile, extra-index-url for cmake, index-url for torch
+MAX_JOBS=32 pip install -e . --index-url https://download.pytorch.org/whl/cu124 --extra-index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+```
+
+If your `gcc` is not `gcc-14`, you can remove `DCMAKE_CUDA_HOST_COMPILER` from [`setup.py`](setup.py#L148)
 
 ## Usage
 
@@ -84,13 +93,6 @@ pip install flash-attn --no-build-isolation
 Alternatively you can compile from source:
 ```sh
 python setup.py install
-```
-
-**To build:**
-```sh
-pip install ninja
-# MAX_JOBS for quick compile, extra-index-url for cmake, index-url for torch
-MAX_JOBS=32 pip install -e . --index-url https://download.pytorch.org/whl/cu124 --extra-index-url https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
 ```
 
 If your machine has less than 96GB of RAM and lots of CPU cores, `ninja` might
