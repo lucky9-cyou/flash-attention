@@ -1,5 +1,7 @@
 #pragma once
 
+// FIXME: i can not find where defined Py_LIMITED_API, just hack it
+#undef Py_LIMITED_API
 #include <Python.h>
 
 #define _CONCAT(A, B) A##B
