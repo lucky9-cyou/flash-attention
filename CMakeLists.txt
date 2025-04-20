@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(FA2_ENABLED ON)
-set(FA3_ENABLED ON)
+set(FA3_ENABLED OFF)
 
 # CUDA by default, can be overridden by using -DVLLM_TARGET_DEVICE=... (used by setup.py)
 set(VLLM_TARGET_DEVICE "cuda" CACHE STRING "Target device backend for vLLM")
@@ -39,7 +39,7 @@ set(HIP_SUPPORTED_ARCHS "gfx906;gfx908;gfx90a;gfx940;gfx941;gfx942;gfx1030;gfx11
 # Note: these should be kept in sync with the torch version in setup.py.
 # Likely should also be in sync with the vLLM version.
 #
-set(TORCH_SUPPORTED_VERSION_CUDA "2.4.0", "2.6.0")
+set(TORCH_SUPPORTED_VERSION_CUDA "2.6.0")
 
 find_python_constrained_versions(${PYTHON_SUPPORTED_VERSIONS})
 
